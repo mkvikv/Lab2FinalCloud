@@ -5,25 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Single-File HTML (served with Python)</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f6f7fb; }
+    body { font-family: Arial, sans-serif; margin: 0; background: #f6f7fb; color:#111; }
     header { background:#111827; color:#fff; padding: 28px 18px; }
     main { max-width: 900px; margin: 0 auto; padding: 18px; }
-    .card { background:#fff; border-radius:14px; padding:16px; margin: 14px 0;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
-    .btn { display:inline-block; padding:10px 14px; border-radius:10px;
-           background:#2563eb; color:#fff; text-decoration:none; }
+    .card {
+      background:#fff; border-radius:14px; padding:16px; margin: 14px 0;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+    .btn {
+      display:inline-block; padding:10px 14px; border-radius:10px;
+      background:#2563eb; color:#fff; text-decoration:none;
+    }
+    .badge {
+      display:inline-block; padding:6px 10px; border-radius:999px;
+      background:#10b981; color:#fff; font-size: 12px; margin-top: 8px;
+    }
+    .muted { color:#6b7280; font-size: 13px; }
+    code { background:#f1f5f9; padding:2px 6px; border-radius: 6px; }
   </style>
 </head>
 <body>
   <header>
     <h1>My Single-File HTML Page</h1>
     <p>Hosted on Azure Web App (Python 3.14 runtime)</p>
+    <span class="badge">Updated via GitHub commit ✅</span>
+    <p class="muted" id="updated"></p>
   </header>
 
   <main>
     <div class="card">
       <h2>About</h2>
-      <p>This is a single HTML file (HTML + CSS + JS in one file). It is served by a small Python app.</p>
+      <p>
+        This is a single HTML file (HTML + CSS + JS in one file). It is served by a small Python app.
+      </p>
+      <p class="muted">
+        Path in repository: <code>static/index.html</code>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>What changed (Task 2.13)</h2>
+      <ul>
+        <li>Added a green “Updated via GitHub commit” badge</li>
+        <li>Added automatic timestamp of last page load</li>
+        <li>Kept the interaction button</li>
+      </ul>
     </div>
 
     <div class="card">
@@ -34,12 +60,18 @@
   </main>
 
   <script>
+    // Show a simple "last updated" time (proves your new version loaded)
+    const now = new Date();
+    document.getElementById("updated").textContent =
+      "Page loaded: " + now.toLocaleString();
+
     function changeMsg() {
       const options = [
         "It works ✅",
         "JavaScript is running.",
         "Deployed from GitHub to Azure.",
-        "Python app is serving this HTML."
+        "Python app is serving this HTML.",
+        "This page was updated in Task 2.13."
       ];
       document.getElementById("msg").textContent =
         options[Math.floor(Math.random() * options.length)];
