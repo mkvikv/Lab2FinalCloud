@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Single-File HTML (served with Python)</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f6f7fb; }
+    header { background:#111827; color:#fff; padding: 28px 18px; }
+    main { max-width: 900px; margin: 0 auto; padding: 18px; }
+    .card { background:#fff; border-radius:14px; padding:16px; margin: 14px 0;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+    .btn { display:inline-block; padding:10px 14px; border-radius:10px;
+           background:#2563eb; color:#fff; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Single-File HTML Page</h1>
+    <p>Hosted on Azure Web App (Python 3.14 runtime)</p>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>About</h2>
+      <p>This is a single HTML file (HTML + CSS + JS in one file). It is served by a small Python app.</p>
+    </div>
+
+    <div class="card">
+      <h2>Interaction</h2>
+      <p id="msg">Click the button.</p>
+      <a class="btn" href="#" onclick="changeMsg(); return false;">Click me</a>
+    </div>
+  </main>
+
+  <script>
+    function changeMsg() {
+      const options = [
+        "It works ✅",
+        "JavaScript is running.",
+        "Deployed from GitHub to Azure.",
+        "Python app is serving this HTML."
+      ];
+      document.getElementById("msg").textContent =
+        options[Math.floor(Math.random() * options.length)];
+    }
+  </script>
+</body>
+</html>
